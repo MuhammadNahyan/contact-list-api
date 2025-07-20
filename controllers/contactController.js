@@ -1,11 +1,10 @@
 const contacts = require('../models/contactModel');
 
-// GET all contacts
+
 const getAllContacts = (req, res) => {
   res.json(contacts);
 };
 
-// GET single contact by ID
 const getContactById = (req, res) => {
   const contact = contacts.find(c => c.id === req.params.id);
   if (!contact) {
@@ -14,7 +13,6 @@ const getContactById = (req, res) => {
   res.json(contact);
 };
 
-// POST create contact
 const createContact = (req, res) => {
   const { name, email, phone } = req.body;
   if (!name || !email || !phone) {
@@ -32,7 +30,6 @@ const createContact = (req, res) => {
   res.status(201).json(newContact);
 };
 
-// PUT update contact
 const updateContact = (req, res) => {
   const contact = contacts.find(c => c.id === req.params.id);
   if (!contact) {
@@ -47,7 +44,6 @@ const updateContact = (req, res) => {
   res.json(contact);
 };
 
-// DELETE contact
 const deleteContact = (req, res) => {
   const index = contacts.findIndex(c => c.id === req.params.id);
   if (index === -1) {
